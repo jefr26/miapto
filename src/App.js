@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react'
+import { useRoutes } from 'react-router-dom'
+import { auth } from './utils/firebase'
+import { onAuthStateChanged } from 'firebase/auth'
+import { routes } from './utils/routes'
 
 function App() {
+  const [loading, setLoading] = useState(false)
+  const [authenticated, setAuthenticated] = useState(false)
+  const routing = useRoutes(routes(authenticated))
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setAuthenticated(user);
+      setLoading(false);
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    loading === true ? (
+      <div className="spinner-border text-success" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>
+    ) : (
+      <>
+        { routing }
+      </>
+    )
+  )
 }
 
-export default App;
+export default App

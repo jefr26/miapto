@@ -1,0 +1,34 @@
+form {
+  label {
+    color: #9a9a9a;
+    font-size: .8571em;
+    margin-bottom: 5px;
+  }
+  button.btn {
+    background-color: #34b5b8;
+    border-radius: 2rem;
+    border-width: 1px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: .8571em;
+    font-weight: 600;
+    line-height: 1.35em;
+    margin: 10px 1px;
+    padding-left: 1.85rem;
+    padding-right: 1.85rem;
+    text-transform: uppercase;
+    transition: all .15s linear;
+  }
+  .form-control {
+    background-color: #fffcf5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #66615b;
+    line-height: normal;
+    transition: color .3s ease-in-out,border-color .3s ease-in-out,background-color .3s ease-in-out;
+    box-shadow: none;
+    border: 1px solid #CCC5B9;
+    height: 2.576rem;
+  }
+}
