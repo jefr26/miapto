@@ -1,7 +1,7 @@
 {
-  "name": "apto",
+  "name": "miapto",
   "version": "0.1.0",
-  "private": true,
+  "license": "cc-by-sa-4.0",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",

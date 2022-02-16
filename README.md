@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# MiApto
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+MiApto is a simple application to track the expenses on the buy of new apartment using react and firebase.
+
+Created with create react app, react bootstrap, react router.
 
 ## Available Scripts
 
@@ -11,60 +13,56 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
 ### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production to the `build` folder.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Create firebase project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Create a new project in firebase console and add a new web app to get the firebase credentials.
 
-### `yarn eject`
+[https://cloud.google.com/firestore/docs/client/get-firebase](https://cloud.google.com/firestore/docs/client/get-firebase)
+[https://firebase.google.com/docs/web/setup](https://firebase.google.com/docs/web/setup)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Set firebase rules
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+As this is a personal project I don't want to other users to register in firebase I set this rule to only allow my user to read and write.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```yml
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == 'user_uid';
+    }
+  }
+}
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+I set email/password as authentication provider.
 
-## Learn More
+## Set enviroment variables
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Copy `.env.example` to `.env.local` and set the data from firebase.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```env
+REACT_APP_API_KEY="",
+REACT_APP_AUTH_DOMAIN="",
+REACT_APP_PROJECT_ID="",
+REACT_APP_STORAGE_BUCKET="",
+REACT_APP_MESSAGING_SENDER_ID="",
+REACT_APP_APP_ID=""
+```
 
-### Code Splitting
+## Other links
+App icon [Iconfinder](https://www.iconfinder.com/iconsets/yellow-tools)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+React bootstrap [https://react-bootstrap.github.io/getting-started/introduction/](https://react-bootstrap.github.io/getting-started/introduction/)
 
-### Analyzing the Bundle Size
+React router [https://reactrouter.com/docs/en/v6](https://reactrouter.com/docs/en/v6)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Some style ideas from [https://demos.creative-tim.com/paper-dashboard-react](https://demos.creative-tim.com/paper-dashboard-react)
