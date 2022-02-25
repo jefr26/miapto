@@ -1,8 +1,15 @@
+import { Breadcrumb } from 'react-bootstrap'
+
 const Dashboard = () => {
   return (
-    <div className="dashboard">
-      dashboard
-    </div>
+    <>
+      <Breadcrumb>
+        <Breadcrumb.Item active>Dashboard</Breadcrumb.Item>
+      </Breadcrumb>
+      <div className="dashboard">
+        dashboard
+      </div>
+    </>
   )
 }
 

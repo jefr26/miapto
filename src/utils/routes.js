@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
-import DashboardLayout from '../layouts/dashboard'
+import DefaultLayout from '../layouts/default'
 import MainLayout from '../layouts/main'
 
 import Login from '../pages/login'
@@ -11,19 +11,10 @@ import Dashboard from '../pages/dashboard'
 const routes = (isLoggedIn) => [
   {
     path: '/',
-    element: isLoggedIn ? <DashboardLayout /> : <Navigate to="/login" />,
+    element: isLoggedIn ? <DefaultLayout /> : <Navigate to="/login" />,
     children: [
       { path: '/dashboard', element: <Dashboard /> },
-      // { path: '/account', element: <Account /> },
       { path: '/', element: <Navigate to="/dashboard" /> },
-      // {
-      //   path: 'member',
-      //   element: <Outlet />,
-      //   children: [
-      //     { path: '/', element: <MemberGrid /> },
-      //     { path: '/add', element: <AddMember /> },
-      //   ],
-      // },
     ],
   },
   {

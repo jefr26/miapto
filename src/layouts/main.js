@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom"
-import { Container, Row, Col, Navbar, Card } from "react-bootstrap"
+import { Outlet } from 'react-router-dom'
+import { Container, Row, Col, Navbar, Card } from 'react-bootstrap'
 
 const MainLayout = () => {
   return (
